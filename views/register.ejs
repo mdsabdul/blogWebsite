@@ -1,0 +1,16 @@
+<%-include("./partials/header")%>
+   <div class="flex justify-center flex-col h-[100vh] w-full bg-slate-600 text-white">
+    
+     <form class=" mx-auto p-6 w-[40%] flex flex-col bg-slate-800  gap-5 rounded " action="/users/register" method="post">
+      <h1 class="text-2xl mb-5 text-center">Register / SignUp </h1>
+        <input class="border-2 border-white p-4 rounded bg-transparent outline-none" type="text" name="name" id="" placeholder="Name" >
+        <input class="border-2 border-white p-4 rounded bg-transparent outline-none" type="text" name="username" placeholder="Username">
+        <input class="border-2 border-white p-4 rounded bg-transparent outline-none" type="email" name="email" placeholder="Email">
+        <input class="border-2 border-white p-4 rounded bg-transparent outline-none" type="password" name="password" placeholder="password">
+        <button class="px-4 py-2 bg-green-700 text-[1.5vw] rounded">Register</button>
+     
+     </form>
+
+   </div>
+
+   <%-include("./partials/footer")%>
