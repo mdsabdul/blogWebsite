@@ -1,0 +1,12 @@
+<%-include("./partials/header")%>
+    <div class="h-[100vh] w-full bg-green-200 text-2xl flex items-center justify-center">
+         <form  class="flex flex-col gap-5 w-[50%] mx-auto " action="/users/postcreate" method="post">
+            <h1 class=" font font-semibold">Create Post</h1>
+            <input class="p-2 text-[1.4vw] border-2 rounded border-black bg-transparent" type="text" name="title" id="" placeholder="title">
+            <textarea class="p-2 text-[1.4vw] border-2 rounded border-black bg-transparent" name="description" id="" placeholder="Description"></textarea>
+            <input class="p-2 text-[1.4vw] border-2 rounded border-black bg-transparent" type="text" name="image" id="" placeholder="Image Url">
+            <button class="p-2 text-[1.4vw] border-2 rounded  bg-green-400 font-semibold">Create</button>
+         </form>
+         
+    </div>
+<%-include("./partials/footer")%>
