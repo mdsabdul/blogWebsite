@@ -1,0 +1,14 @@
+<%-include("./partials/header")%>
+   <div class="flex justify-center flex-col h-[100vh] w-full bg-slate-600 ">
+    
+     <form class=" mx-auto p-6 w-[40%] flex flex-col bg-slate-800  gap-5 rounded " action="/users/update/<%=id%>" method="post" >
+      <h1 class="text-2xl mb-5 text-center">Update Blog</h1>
+         <input type="text" name="title" value="<%=post.title%>" placeholder="Title">
+         <input type="text" name="image" value="<%=post.image%>" placeholder="Image Url">
+         <input type="text" name="description" value="<%=post.description%>" placeholder="description">
+         <button>Update</button>
+     </form>
+
+   </div>
+
+   <%-include("./partials/footer")%>

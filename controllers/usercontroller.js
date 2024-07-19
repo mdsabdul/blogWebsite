@@ -38,9 +38,11 @@ exports.isLoggedIn=(req,res,next)=>{
       res.redirect("/users/login")
    }
 }
+
 exports.createpost = (req,res,next)=>{
    res.render("postcreate")
 }
+
 exports.postcreatepage= async(req,res,next)=>{
   try {
    const newpost = new Post({

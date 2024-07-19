@@ -1,9 +1,20 @@
 <%-include("./partials/header")%>
 
-  <div class="h-[100vh] w-full bg-green-200">
+  <div class="  w-full bg-green-100">
     <%-include("./partials/nav")%>
-   <div class="h-[80vh] w-[50%]  mx-auto flex items-center justify-center text-center">
-    <h1  class="text-3xl">Welcome to <span class="text-green-500">BLOG</span> Website</h1>
+   
+    <h1  class="text-4xl text-center py-8 px-8">Welcome to <span class="text-green-500">BLOG</span> Website</h1>
+   <div class="flex flex-col gap-4">
+    <%blogs.forEach((item)=>{%>
+      <div class="w-full  px-5 py-5 my-5  bg-green-300">
+       <h1 class="text-2xl font-semibold  py-4 px-3 capitalize"><%=item.title%></h1>
+       <img class="h-[40vh] w-[50%] object-cover rounded-[.5vw]" src="<%=item.image%>" alt="">
+       <p class="text-[1.2vw] py-4 capitalize px-3" ><span class="font-semibold">Description </span>:- <%=item.description%></p>
+       <a class="ms-5 px-4 bg-green-700 rounded text-white py-2" href="/users/updateblogs/<%=item._id%>">Update</a>
+      </div>
+     <%})%>
+   </div>
+
    </div>
   </div>
   <%-include("./partials/footer")%>   

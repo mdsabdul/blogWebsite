@@ -1,4 +1,4 @@
-<%- include("./partials/header") %>
+<!-- <%- include("./partials/header") %>
     <div class=" w-full bg-green-200 text-2xl">
         <%- include("./partials/nav") %>
             <div class="p-10">
@@ -30,8 +30,8 @@
 
             <div class="w-full  flex flex-wrap justify-center items-center gap-5">
 
-                <% newpost.forEach((item , i)=> { %>
-                    <a href="/postdetail/<%=item.id%>">
+                <%user.posts.forEach((item , i)=> { %>
+                    <a href="/postdetail/<%=item._id%>">
                         <div class="h-[26vw]  w-[16vw] bg-green-300 p-3 gap-5 rounded">
                             <h1 class="mb-5 font-semibold underline">
                                 <%= item.title %>
@@ -48,4 +48,48 @@
             </div>
 
     </div>
-    <%- include("./partials/footer") %>
+    <%- include("./partials/footer") %> -->
+    <%- include("./partials/header") %>
+<div class="w-full  bg-green-200 text-2xl">
+  <%- include("./partials/nav") %>
+  <div class="p-10">
+    <span class="cursor-pointer hover:text-red-400 font-semibold underline">BLOGS</span>
+  </div>
+  <a class="absolute text-[1.5vw] px-5 py-2 rounded hover:bg-slate-400 hover:text-white bg-slate-300 top-5 right-5" href="/logout">Logout</a>
+
+  <div class="mx-auto w-[40vw] p-2 bg-green-400 rounded mb-4 text-center">
+    <div class="h-[10vw] w-[10vw] bg-green-400 rounded-full overflow-hidden mx-auto">
+      <img class="object-cover" src="<%= user.profile %>" alt="">
+    </div>
+    <h1 class="capitalize font-semibold mt-2">
+      <%= user.name %>
+    </h1>
+    <p class="">
+      <%= user.email %>
+    </p>
+    <div class="flex justify-center items-center w-full my-5 text-[1.3vw] ">
+      <form class="flex" action="/upload" method="post" enctype="multipart/form-data">
+        <input type="file" name="image" required>
+        <button class="bg-slate-200 px-3 rounded">Submit</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="w-full flex flex-wrap justify-center items-center gap-5">
+    <% user.posts.forEach(function(item) { %>
+      <a href="/postdetail/<%= item._id %>">
+        <div class="h-[26vw] w-[16vw] bg-green-300 p-3 gap-5 rounded">
+          <h1 class="mb-5 font-semibold underline">
+            <%= item.title %>
+          </h1>
+          <img class="h-[75%] object-cover rounded" src="<%= item.image %>" alt="">
+          <div class="flex items-center justify-between p-2 w-full">
+            <a href="/update"><i class="ri-pencil-fill"></i></a>
+            <a href="/delete/<%= item._id %>"><i class="ri-delete-bin-6-fill"></i></a>
+          </div>
+        </div>
+      </a>
+    <% }); %>
+  </div>
+</div>
+<%- include("./partials/footer") %>

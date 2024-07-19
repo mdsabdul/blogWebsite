@@ -10,6 +10,7 @@
     <nav class="h-[10vh] w-full flex justify-between items-center px-10 ">
         <h1 class="text-2xl font-semibold text-green-600 cursor-pointer">BLOGWEBSITE</h1>
         <div  class="flex gap-5 text-[1.2vw]"> 
+          <a class=" px-3 py-1 rounded" href="/">Home</a>
           <a class=" px-3 py-1 rounded" href="/users/postcreate">Create</a>
           <a class=" px-3 py-1 rounded" href="/profile">Profile</a>
           <a class=" px-3 py-1 rounded" href="/contact">Contact</a>
@@ -17,8 +18,9 @@
         <div class="flex gap-5 text-[1.2vw]">
           <% if(!user){ %>
             <a class="hover:bg-green-400 bg-green-300 px-3 py-1 rounded" href="/users/login">Login</a>
+            <%}%>
             <a class="hover:bg-green-400 bg-green-300 px-3 py-1 rounded" href="/users/register">Register</a>
-         <%}%>
+        
          
         </div>
        </nav>
