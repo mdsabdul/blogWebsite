@@ -50,7 +50,7 @@
     </div>
     <%- include("./partials/footer") %> -->
     <%- include("./partials/header") %>
-<div class="w-full  bg-green-200 text-2xl">
+<div class="w-full h-[100vh] overflow-y-auto  bg-green-200 text-2xl">
   <%- include("./partials/nav") %>
   <div class="p-10">
     <span class="cursor-pointer hover:text-red-400 font-semibold underline">BLOGS</span>
@@ -82,7 +82,7 @@
           <h1 class="mb-5 font-semibold underline">
             <%= item.title %>
           </h1>
-          <img class="h-[75%] object-cover rounded" src="<%= item.image %>" alt="">
+          <img class="h-[70%] object-cover rounded" src="<%= item.image %>" alt="">
           <div class="flex items-center justify-between p-2 w-full">
             <a href="/update"><i class="ri-pencil-fill"></i></a>
             <a href="/delete/<%= item._id %>"><i class="ri-delete-bin-6-fill"></i></a>

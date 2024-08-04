@@ -3,6 +3,7 @@ const passport = require("passport")
 const LocalStretegy = require("passport-local")
 const User = require("../models/userschema")
 const Post = require("../models/postschema")
+const commentmodel = require("../models/commentModel")
 
 passport.use(new LocalStretegy(User.authenticate()))
 
@@ -26,36 +27,60 @@ exports.getregister = async (req, res, next) => {
       res.send(error)
    }
 }
-exports.signin=(passport.authenticate("local",{
-successRedirect:"/profile",
-failureRedirect:"/users/login"
+exports.signin = (passport.authenticate("local", {
+   successRedirect: "/profile",
+   failureRedirect: "/users/login"
 }))
 
-exports.isLoggedIn=(req,res,next)=>{
-   if(req.isAuthenticated()){
+exports.isLoggedIn = (req, res, next) => {
+   if (req.isAuthenticated()) {
       return next()
-   }else{
+   } else {
       res.redirect("/users/login")
    }
 }
 
-exports.createpost = (req,res,next)=>{
+exports.createpost = (req, res, next) => {
    res.render("postcreate")
 }
 
-exports.postcreatepage= async(req,res,next)=>{
-  try {
-   const newpost = new Post({
-    title:req.body.title,
-    description:req.body.description,
-    image:req.body.image,
-    user:req.user._id
-   })
- req.user.posts.push(newpost._id)
-   await newpost.save()
-   await req.user.save()
-   res.redirect("/profile")
-  } catch (error) {
-   res.send(error)
-  }
+exports.postcreatepage = async (req, res, next) => {
+   try {
+      const newpost = new Post({
+         title: req.body.title,
+         description: req.body.description,
+         image: req.body.image,
+         user: req.user._id
+      })
+      req.user.posts.push(newpost._id)
+      await newpost.save()
+      await req.user.save()
+      res.redirect("/profile")
+   } catch (error) {
+      res.send(error)
+   }
+}
+
+
+exports.commentpage = async (req, res, next) => {
+   try {
+
+      const comments = new commentmodel({
+         title: req.body.title,
+         createdby: req.user._id,
+         blogId: req.params.id
+
+      })
+      const id = req.params.id
+      const currentpost = await Post.findById(id)
+
+
+      await comments.save()
+      currentpost.comments.push(comments._id)
+      await currentpost.save()
+
+      res.redirect("/")
+   } catch (error) {
+      res.send(error)
+   }
 }
