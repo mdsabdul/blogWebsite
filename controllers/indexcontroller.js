@@ -3,7 +3,6 @@ const comment = require("../models/commentModel")
 
 exports.homepage=async (req,res,next)=>{
 
-
    const blogs = await Post.find().populate("user").populate({
       path:"comments",populate:{
           path: 'createdby',
