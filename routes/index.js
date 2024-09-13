@@ -21,12 +21,12 @@ var imagekit= new ImageKit({
 router.post("/upload", async function (req, res, next) {
   console.log(req.files);
   const user = req.user
-  console.log(user);
+  // console.log(user);
   const { url, fileId } = await imagekit.upload({
     file: req.files.image.data,
     fileName: req.files.image.name
   })
-  console.log(url);
+  // console.log(url);
   
   user.profile = url
   await user.save()
