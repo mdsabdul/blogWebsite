@@ -26,7 +26,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({
   saveUninitialized:true,
   resave:true,
-  secret: process.env.secret
+  secret:process.env.secret
 }))
 app.use(passport.initialize())
 app.use(passport.session())
