@@ -1,16 +1,17 @@
 const express = require('express');
 const router = express.Router();
+require("dotenv").config()
 const Post = require("../models/postschema");
 const { isLoggedIn } = require("../controllers/usercontroller");
 const { homepage, userlogin } = require("../controllers/indexcontroller");
 const User = require("../models/userschema")
 
-var imagekit = require("imagekit");
+const imagekit = require("imagekit");
 
-var image = new imagekit({
-  publicKey: "public_Lp21aIjEIKn4DPARd1ySASCR4hI=",
-  privateKey: "private_dkCcTPQc3B+3jJs8qPIFBHIxUs0=",
-  urlEndpoint: "https://ik.imagekit.io/z1yejmwsj"
+const image = new imagekit({
+  publicKey: process.env.publickey,
+  privateKey: process.env. privateKey,
+  urlEndpoint: process.env.urlEndpoint
 });
 router.post("/upload", async function (req, res, next) {
   console.log(req.files);
