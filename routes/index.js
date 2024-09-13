@@ -6,21 +6,28 @@ const { isLoggedIn } = require("../controllers/usercontroller");
 const { homepage, userlogin } = require("../controllers/indexcontroller");
 const User = require("../models/userschema")
 
-const imagekit = require("imagekit");
 
-const image = new imagekit({
-  publicKey: process.env.publickey,
-  privateKey: process.env. privateKey,
-  urlEndpoint: process.env.urlEndpoint
-});
+var
+  ImageKit=require("imagekit" );
+
+var imagekit= new ImageKit({
+
+          publicKey:process.env.publickey,
+          privateKey: process.env.privatekey,
+          urlEndpoint: process.env.url_endpoints
+
+        })
+  ;
 router.post("/upload", async function (req, res, next) {
   console.log(req.files);
   const user = req.user
-  // console.log(user);
-  const { url, fileId } = await image.upload({
+  console.log(user);
+  const { url, fileId } = await imagekit.upload({
     file: req.files.image.data,
     fileName: req.files.image.name
   })
+  console.log(url);
+  
   user.profile = url
   await user.save()
   res.redirect("/profile")
@@ -40,13 +47,13 @@ router.get('/about', (req, res) => {
 // GET profile page
 router.get('/profile', isLoggedIn, async (req, res) => {
   try {
-   
-  //  console.log(user);
- 
-  // console.log(user.posts[0]);
-  const user=  await User.findById(req.user._id).populate("posts")
-  // console.log(posts);
-   res.render("profile",{user})
+
+    //  console.log(user);
+
+    // console.log(user.posts[0]);
+    const user = await User.findById(req.user._id).populate("posts")
+    // console.log(posts);
+    res.render("profile", { user })
   } catch (error) {
     res.send(error);
   }
@@ -73,7 +80,7 @@ router.get("/logout", (req, res) => {
 router.get("/postdetail/:id", async function (req, res, next) {
   try {
     const post = await Post.findById(req.params.id)
-    res.render("postdetail", {user:req.user, post })
+    res.render("postdetail", { user: req.user, post })
   } catch (error) {
     res.send(error)
   }
